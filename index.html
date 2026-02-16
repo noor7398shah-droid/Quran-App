@@ -1,114 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quran App | Download</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran Elite | The Ultimate Spiritual Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #198754;
+            --primary-dark: #0f5132;
+            --accent: #fbbf24;
+            --bg: #ffffff;
+            --surface: #f4f7f5;
+            --text: #0a0a0a;
+            --text-muted: #525252;
+            --glass: rgba(255, 255, 255, 0.7);
+            --border: rgba(0, 0, 0, 0.05);
+            --shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.08);
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+        [data-theme="dark"] {
+            --bg: #05070a;
+            --surface: #0f1218;
+            --text: #f9fafb;
+            --text-muted: #9ca3af;
+            --glass: rgba(15, 18, 24, 0.8);
+            --border: rgba(255, 255, 255, 0.05);
+            --shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
+        }
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins', sans-serif;
-}
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-body{
-  background: linear-gradient(135deg, #0f5132, #198754);
-  color:white;
-  text-align:center;
-  padding:40px 20px;
-}
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
 
-.container{
-  max-width:500px;
-  margin:auto;
-  background:rgba(255,255,255,0.1);
-  backdrop-filter: blur(15px);
-  border-radius:20px;
-  padding:40px 30px;
-  box-shadow:0 15px 35px rgba(0,0,0,0.4);
-}
+        /* Animated Mesh Background */
+        .mesh-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(at 0% 0%, rgba(25,135,84,0.1) 0, transparent 50%), 
+                        radial-gradient(at 50% 0%, rgba(251,191,36,0.05) 0, transparent 50%);
+            z-index: -1;
+        }
 
-.logo{
-  font-size:60px;
-  margin-bottom:10px;
-}
+        /* --- Floating Header --- */
+        nav {
+            position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 1000px;
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--border);
+            padding: 14px 28px; border-radius: 100px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; box-shadow: var(--shadow);
+        }
 
-h1{
-  font-size:28px;
-  font-weight:700;
-  margin-bottom:10px;
-}
+        .logo { font-weight: 800; color: var(--primary); font-size: 1.1rem; letter-spacing: -0.5px; }
 
-p{
-  font-size:14px;
-  opacity:0.9;
-  margin-bottom:25px;
-}
+        .theme-btn {
+            background: var(--text); color: var(--bg);
+            border: none; padding: 8px 16px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.3s;
+        }
 
-.features{
-  text-align:left;
-  margin-bottom:25px;
-  font-size:14px;
-}
+        /* --- Hero Section --- */
+        .hero {
+            padding: 180px 5% 80px; text-align: center;
+            display: flex; flex-direction: column; align-items: center;
+        }
 
-.features li{
-  margin-bottom:8px;
-}
+        .arabic-text {
+            font-family: 'Amiri', serif; font-size: 5.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 0; line-height: 1; opacity: 0; transform: translateY(20px);
+            animation: fadeIn 0.8s forwards 0.2s;
+        }
 
-.btn{
-  display:inline-block;
-  background:#ffffff;
-  color:#198754;
-  padding:15px 30px;
-  font-size:16px;
-  font-weight:600;
-  border-radius:50px;
-  text-decoration:none;
-  transition:0.3s;
-}
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800;
+            letter-spacing: -3px; line-height: 1; margin: 20px 0;
+            opacity: 0; transform: translateY(20px);
+            animation: fadeIn 0.8s forwards 0.4s;
+        }
 
-.btn:hover{
-  background:#d4edda;
-  transform:scale(1.05);
-}
+        .hero p {
+            color: var(--text-muted); font-size: 1.25rem; max-width: 600px;
+            opacity: 0; transform: translateY(20px);
+            animation: fadeIn 0.8s forwards 0.6s;
+        }
 
-.footer{
-  margin-top:25px;
-  font-size:12px;
-  opacity:0.7;
-}
-</style>
+        .download-pill {
+            margin-top: 40px; display: flex; align-items: center;
+            background: var(--primary); color: white;
+            padding: 12px 12px 12px 30px; border-radius: 100px;
+            text-decoration: none; font-weight: 700; gap: 20px;
+            transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 20px 40px rgba(25, 135, 84, 0.3);
+        }
+
+        .download-pill:hover { transform: scale(1.05) translateY(-5px); }
+
+        .icon-circle {
+            background: rgba(255,255,255,0.2); width: 45px; height: 45px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* --- Bento Grid Section --- */
+        .bento-grid {
+            padding: 100px 10%; display: grid;
+            grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 300px);
+            gap: 24px; max-width: 1400px; margin: 0 auto;
+        }
+
+        .bento-item {
+            background: var(--surface); border-radius: 32px;
+            border: 1px solid var(--border); overflow: hidden;
+            position: relative; transition: 0.4s;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;
+        }
+
+        .bento-item:hover { border-color: var(--primary); transform: translateY(-10px); }
+
+        .item-1 { grid-column: span 2; background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&q=80&w=800'); background-size: cover; color: white; }
+        .item-2 { grid-column: span 1; text-align: center; justify-content: center; background: var(--primary); color: white; }
+        .item-3 { grid-column: span 1; }
+        .item-4 { grid-column: span 1; }
+        .item-5 { grid-column: span 3; display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
+
+        .stat-huge { font-size: 4rem; font-weight: 800; display: block; }
+
+        /* --- Scroll Gallery --- */
+        .gallery-title { text-align: center; font-weight: 800; font-size: 2.5rem; margin-bottom: 50px; }
+        .iphone-scroll {
+            display: flex; gap: 40px; overflow-x: auto; padding: 40px 10%;
+            scroll-snap-type: x mandatory; scrollbar-width: none;
+        }
+        .iphone-scroll::-webkit-scrollbar { display: none; }
+        
+        .iphone-card {
+            flex: 0 0 280px; height: 580px; background: #000;
+            border-radius: 50px; border: 12px solid #1a1a1a;
+            scroll-snap-align: center; box-shadow: var(--shadow);
+            transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .iphone-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 38px; }
+        .iphone-card:hover { transform: scale(1.05) rotate(1deg); }
+
+        /* --- QR Section --- */
+        .qr-card-final {
+            margin: 100px 10%; background: var(--text); color: var(--bg);
+            border-radius: 48px; padding: 80px; display: flex;
+            align-items: center; justify-content: space-between; gap: 50px;
+            position: relative; overflow: hidden;
+        }
+
+        .qr-card-final h2 { font-size: 3.5rem; line-height: 1; font-weight: 800; }
+        .qr-code { background: white; padding: 20px; border-radius: 32px; width: 200px; }
+
+        /* --- Footer --- */
+        footer { padding: 80px 10%; text-align: center; border-top: 1px solid var(--border); }
+        .footer-logo { font-weight: 800; font-size: 1.5rem; color: var(--primary); margin-bottom: 20px; }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+            .item-5 { flex-direction: column; gap: 30px; }
+            .qr-card-final { flex-direction: column; text-align: center; padding: 40px; }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="mesh-bg"></div>
 
-<div class="container">
+    <nav>
+        <div class="logo">QURAN ELITE</div>
+        <button class="theme-btn" onclick="toggleTheme()">SWITCH THEME</button>
+    </nav>
 
-  <div class="logo">📖</div>
+    <section class="hero">
+        <div class="arabic-text">القرآن الكريم</div>
+        <h1>Pure. Personal. <br>Professional.</h1>
+        <p>The most advanced Quranic tool ever built for Android. Seamlessly integrated into your daily spiritual routine.</p>
+        <a href="#" class="download-pill">
+            DOWNLOAD DIRECT APK
+            <div class="icon-circle">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 13l5 5 5-5M12 18V6"/></svg>
+            </div>
+        </a>
+    </section>
 
-  <h1>Quran App</h1>
-  <p>Read Holy Quran Anytime, Anywhere</p>
+    <div class="bento-grid">
+        <div class="bento-item item-1">
+            <h3>Visual Immersion</h3>
+            <p>Experience crystal clear Mushaf pages.</p>
+        </div>
+        <div class="bento-item item-2">
+            <span class="stat-huge">4.9</span>
+            <p>Top Rated App</p>
+        </div>
+        <div class="bento-item item-3">
+            <h3>No Ads.</h3>
+            <p>Ever.</p>
+        </div>
+        <div class="bento-item item-4">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 2L1 21h22L12 2z"/></svg>
+            <h3 style="margin-top: 20px;">Privacy First</h3>
+        </div>
+        <div class="bento-item item-5">
+            <div>
+                <h3>Global Ummah</h3>
+                <p>Trusted by 10 million+ users worldwide for daily recitation.</p>
+            </div>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=quran&color=198754" style="border-radius: 12px;" alt="QR">
+        </div>
+    </div>
 
-  <ul class="features">
-    <li>✔ Complete Quran</li>
-    <li>✔ Simple & Clean Interface</li>
-    <li>✔ Lightweight & Fast</li>
-    <li>✔ Easy Navigation</li>
-  </ul>
+    <h2 class="gallery-title">Crafted with Precision</h2>
+    <div class="iphone-scroll">
+        <div class="iphone-card"><img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&q=80&w=400" alt="App"></div>
+        <div class="iphone-card"><img src="https://images.unsplash.com/photo-1591453089224-d23259b35999?auto=format&fit=crop&q=80&w=400" alt="App"></div>
+        <div class="iphone-card"><img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=400" alt="App"></div>
+        <div class="iphone-card"><img src="https://images.unsplash.com/photo-1584281723351-95ad975779fc?auto=format&fit=crop&q=80&w=400" alt="App"></div>
+    </div>
 
-  <a class="btn" href="https://github.com/noor7398shah-droid/Quran-App/releases/download/v1.0/QuranApp_v1.apk">
-    Download Now
-  </a>
+    <section class="qr-card-final">
+        <div>
+            <h2>Ready to <br>elevate your <br>soul?</h2>
+            <p style="margin-top: 20px; opacity: 0.8;">Download the official Quran Elite APK v5.0.0</p>
+        </div>
+        <div class="qr-code">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=download&color=000000" width="160" alt="QR">
+        </div>
+    </section>
 
-  <div class="footer">
-    Enable "Install from Unknown Sources" before installing.
-  </div>
+    <footer>
+        <div class="footer-logo">QURAN ELITE</div>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Designed for the modern Muslim. Built with love and Taqwa. Minimum requirements: Android 9.0+, 150MB Storage.</p>
+        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.5;">© 2026 Quran Elite Foundation. All rights reserved.</p>
+    </footer>
 
-</div>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const current = body.getAttribute('data-theme');
+            body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
 
+        // Auto-animate stats on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.bento-item').forEach(item => observer.observe(item));
+    </script>
 </body>
 </html>
