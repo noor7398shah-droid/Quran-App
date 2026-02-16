@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,61 +17,62 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         
-        /* Fixed Bottom Space Issue */
-        html, body {
+        body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            overflow-x: hidden; /* Side scroll khatam karne ke liye */
+            overflow-x: hidden;
             width: 100%;
-            height: 100%;
         }
 
         .amiri { font-family: 'Amiri', serif; }
 
         nav {
-            padding: 1.5rem 8%;
+            padding: 1.2rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(10px);
             position: sticky; top: 0; z-index: 100;
-            background: rgba(6, 34, 22, 0.8);
+            background: rgba(6, 34, 22, 0.98);
+            border-bottom: 1px solid rgba(250, 204, 21, 0.1);
         }
 
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 12px; }
 
         .hero {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 60px 5% 20px;
+            padding: 60px 8% 30px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: clamp(2.2rem, 7vw, 4rem);
+            font-size: clamp(2rem, 8vw, 3.2rem);
             font-weight: 800;
             margin-bottom: 15px;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .download-btn {
             background: var(--primary);
             color: #000;
-            padding: 16px 35px;
-            border-radius: 50px;
+            padding: 18px 45px;
+            border-radius: 100px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 800;
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            transition: 0.3s;
-            margin-top: 20px;
+            margin-top: 25px;
+            box-shadow: 0 15px 30px rgba(250, 204, 21, 0.2);
+            transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* Screenshot Slider Fixed */
+        .download-btn:active { transform: scale(0.95); }
+
+        /* Premium Infinite Slider */
         .slider-container {
-            width: 100vw;
+            width: 100%;
             overflow: hidden;
             padding: 40px 0;
             position: relative;
@@ -80,64 +81,80 @@
         .slider-track {
             display: flex;
             width: max-content;
-            animation: scroll 25s linear infinite;
-            gap: 20px;
+            animation: scroll 20s linear infinite;
+            gap: 30px; /* Space between images */
         }
 
         .slider-track img {
-            width: 240px;
+            width: 240px; 
             height: auto;
-            border-radius: 20px;
-            border: 4px solid var(--card-green);
+            border-radius: 24px;
+            border: 6px solid var(--card-green);
             flex-shrink: 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } /* Half track length */
+            100% { transform: translateX(calc(-270px * 4)); } /* width + gap */
         }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            padding: 20px 8%;
-            max-width: 1000px;
+            padding: 30px 8%;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .feature-item {
             background: var(--card-green);
-            padding: 20px 10px;
-            border-radius: 18px;
+            padding: 25px 15px;
+            border-radius: 20px;
             text-align: center;
-            border: 1px solid rgba(250, 204, 21, 0.1);
+            border: 1px solid rgba(250, 204, 21, 0.05);
+            transition: 0.3s;
         }
 
-        .feature-item i { color: var(--primary); margin-bottom: 10px; }
-        .feature-item h3 { font-size: 0.85rem; }
+        .feature-item i { color: var(--primary); margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto; }
+        .feature-item h3 { font-size: 0.9rem; font-weight: 700; }
 
         .ayah-card {
-            background: var(--card-green);
-            margin: 30px 8% 60px;
-            padding: 30px;
-            border-radius: 25px;
-            border-left: 5px solid var(--primary);
+            background: linear-gradient(135deg, var(--card-green) 0%, #041a11 100%);
+            margin: 40px 8% 80px;
+            padding: 40px 25px;
+            border-radius: 30px;
+            position: relative;
             text-align: center;
+            overflow: hidden;
+        }
+
+        .ayah-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px; left: 20px;
+            font-size: 8rem;
+            color: var(--primary);
+            opacity: 0.1;
+            font-family: serif;
         }
 
         footer {
-            padding: 30px;
+            padding: 40px 20px;
             text-align: center;
-            background: rgba(0,0,0,0.2);
+            background: #03140d;
+            border-top: 1px solid rgba(250, 204, 21, 0.05);
             color: var(--text-dim);
             font-size: 0.85rem;
-            width: 100%;
         }
 
-        @media (max-width: 600px) {
-            .features { grid-template-columns: 1fr 1fr; }
-            .hero h1 { font-size: 2rem; }
+        @media (max-width: 500px) {
+            .slider-track img { width: 210px; }
+            @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(calc(-240px * 4)); }
+            }
         }
     </style>
 </head>
@@ -145,48 +162,49 @@
 
     <nav>
         <div class="logo">
-            <i data-lucide="moon"></i>
-            Al Musalmeen
+            <i data-lucide="moon-star"></i> Al Musalmeen
         </div>
+        <div style="font-size: 0.7rem; color: var(--primary); border: 1px solid var(--primary); padding: 4px 10px; border-radius: 50px; font-weight: 700;">PREMIUM</div>
     </nav>
 
     <section class="hero">
-        <h1 class="amiri" style="color: var(--primary);">السلام عليكم</h1>
-        <h1>Your Premium<br>Islamic Companion</h1>
-        <p style="font-size: 1rem; opacity: 0.8;">Quran 13 & 15 Lines, Prayer Times, and more.</p>
+        <h1 class="amiri" style="color: var(--primary); font-size: 3rem; margin-bottom: 5px;">السلام عليكم</h1>
+        <h1>Your Premium Deen<br>Companion</h1>
+        <p style="color: var(--text-dim); margin-top: 10px;">Ad-free Quran, Prayer Times, Tasbih & more.</p>
         
         <a href="https://github.com/noor7398shah-droid/Quran-App/releases/download/v1.0/QuranApp_v1.apk" class="download-btn">
-            <i data-lucide="download"></i> Download APK
+            <i data-lucide="download"></i> DOWNLOAD APK
         </a>
     </section>
 
     <div class="slider-container">
         <div class="slider-track">
-            <img src="1000088096.jpg">
-            <img src="1000088097.jpg">
-            <img src="1000088098.jpg">
-            <img src="1000088099.jpg">
-            <img src="1000088096.jpg">
-            <img src="1000088097.jpg">
-            <img src="1000088098.jpg">
-            <img src="1000088099.jpg">
+            <img src="https://raw.githubusercontent.com/noor7398shah-droid/noor7398shah-droid.github.io/main/Quran-App/1000088096.jpg">
+            <img src="https://raw.githubusercontent.com/noor7398shah-droid/noor7398shah-droid.github.io/main/Quran-App/1000088097.jpg">
+            <img src="https://raw.githubusercontent.com/noor7398shah-droid/noor7398shah-droid.github.io/main/Quran-App/1000088098.jpg">
+            <img src="https://raw.githubusercontent.com/noor7398shah-droid/noor7398shah-droid.github.io/main/Quran-App/1000088099.jpg">
+            <img src="https://raw.githubusercontent.com/noor7398shah-droid/noor7398shah-droid.github.io/main/Quran-App/1000088096.jpg">
+            <img src="https://raw.githubusercontent.com/noor7398shah-droid/noor7398shah-droid.github.io/main/Quran-App/1000088097.jpg">
+            <img src="https://raw.githubusercontent.com/noor7398shah-droid/noor7398shah-droid.github.io/main/Quran-App/1000088098.jpg">
+            <img src="https://raw.githubusercontent.com/noor7398shah-droid/noor7398shah-droid.github.io/main/Quran-App/1000088099.jpg">
         </div>
     </div>
 
     <section class="features">
-        <div class="feature-item"><i data-lucide="book-open"></i><h3>13/15 Lines</h3></div>
-        <div class="feature-item"><i data-lucide="clock"></i><h3>Prayer Times</h3></div>
-        <div class="feature-item"><i data-lucide="compass"></i><h3>Qibla Finder</h3></div>
-        <div class="feature-item"><i data-lucide="fingerprint"></i><h3>Tasbih</h3></div>
+        <div class="feature-item"><i data-lucide="book-marked" size="28"></i><h3>Quran Majeed</h3></div>
+        <div class="feature-item"><i data-lucide="bell-ring" size="28"></i><h3>Prayer Times</h3></div>
+        <div class="feature-item"><i data-lucide="navigation-2" size="28"></i><h3>Qibla Finder</h3></div>
+        <div class="feature-item"><i data-lucide="list-check" size="28"></i><h3>Digital Tasbih</h3></div>
     </section>
 
     <div class="ayah-card">
-        <p class="amiri" style="font-size: 1.5rem; color: var(--primary);">بیشک مشکل کے ساتھ آسانی ہے۔</p>
-        <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 10px;">"Indeed, with hardship [will be] ease."</p>
+        <p class="amiri" style="font-size: 2rem; color: var(--primary);">بیشک مشکل کے ساتھ آسانی ہے۔</p>
+        <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 15px; letter-spacing: 0.5px;">"Indeed, with hardship [will be] ease."<br><b>Surah Ash-Sharh 94:6</b></p>
     </div>
 
     <footer>
-        <p>© 2026 Al Musalmeen • Made for the Ummah</p>
+        <p>© 2026 Al Musalmeen • Built for the Ummah</p>
+        <p style="font-size: 0.7rem; margin-top: 10px; opacity: 0.5;">Version 1.0 (Stable)</p>
     </footer>
 
     <script>
@@ -194,4 +212,3 @@
     </script>
 </body>
 </html>
-
