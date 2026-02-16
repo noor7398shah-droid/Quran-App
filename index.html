@@ -3,112 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al Musalmeen | Complete Islamic Companion</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Al Musalmeen | Digital Quran App</title>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --emerald: #10b981;
-            --emerald-dark: #065f46;
-            --gold: #fbbf24;
-            --bg-color: #050505;
-            --card-bg: rgba(255, 255, 255, 0.03);
+            --primary: #facc15; /* Golden Yellow like your app */
+            --bg-dark: #062216;  /* Deep Green like your app */
+            --card-green: #113d2c;
             --text-main: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.6);
-            --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-            --accent: var(--emerald);
+            --text-dim: rgba(255, 255, 255, 0.7);
         }
 
-        /* Theme Variants */
-        body.light-mode {
-            --bg-color: #f8fafc;
-            --card-bg: rgba(0, 0, 0, 0.03);
-            --text-main: #0f172a;
-            --text-secondary: #475569;
-            --accent: var(--emerald-dark);
-        }
-
-        body.ramadan-mode {
-            --bg-color: #0f100a;
-            --accent: var(--gold);
-            --card-bg: rgba(251, 191, 36, 0.05);
-            --text-main: #fef3c7;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.6;
-            transition: background-color 0.8s ease, color 0.8s ease;
         }
 
         .amiri { font-family: 'Amiri', serif; }
 
-        /* Animated Background */
-        .bg-system {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .islamic-pattern {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120vmax;
-            height: 120vmax;
-            opacity: 0.05;
-            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0l5.5 25.5L71 14.5 54.5 40 71 65.5 45.5 54.5 40 80l-5.5-25.5L9 65.5 25.5 40 9 14.5 34.5 25.5z' fill='%2310b981' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
-            animation: rotatePattern 120s linear infinite;
-        }
-
-        @keyframes rotatePattern {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
+        /* Background Glows */
         .glow {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-            filter: blur(100px);
-            opacity: 0.15;
-            top: -200px;
-            right: -100px;
-            transition: background 1s ease;
+            position: fixed;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(250, 204, 21, 0.05) 0%, transparent 70%);
+            z-index: -1;
         }
 
-        /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
+            padding: 1.5rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
             backdrop-filter: blur(10px);
-            background: rgba(0,0,0,0.01);
+            position: sticky; top: 0; z-index: 100;
         }
+
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 5% 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* App Download Button */
+        .download-btn {
+            background: var(--primary);
+            color: #000;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(250, 204, 21, 0.2);
+        }
+
+        .download-btn:hover { transform: scale(1.05); }
+
+        /* Screenshot Slider */
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            padding: 60px 0;
+            background: rgba(0,0,0,0.2);
+            margin: 40px 0;
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(280px * 8);
+            animation: scroll 20s linear infinite;
+            gap: 20px;
+        }
+
+        .slider-track img {
+            width: 260px;
+            border-radius: 25px;
+            border: 5px solid var(--card-green);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-280px * 4)); }
+        }
+
+        /* Features Section (App Style) */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            padding: 40px 8%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            background: var(--card-green);
+            padding: 25px 15px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(250, 204, 21, 0.1);
+        }
+
+        .feature-item i { color: var(--primary); margin-bottom: 15px; }
+        .feature-item h3 { font-size: 0.9rem; font-weight: 600; }
+
+        /* Ayah Card */
+        .ayah-card {
+            background: var(--card-green);
+            margin: 40px 8%;
+            padding: 40px;
+            border-radius: 30px;
+            border-left: 5px solid var(--primary);
+            text-align: center;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 600px) {
+            .features { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow" style="top: 0; right: 0;"></div>
+    <div class="glow" style="bottom: 0; left: 0;"></div>
+
+    <nav>
+        <div class="logo">
+            <i data-lucide="moon"></i>
+            Al Musalmeen
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 class="amiri">السلام عليكم</h1>
+        <h1>Your All-in-One<br><span style="color: var(--primary)">Islamic Companion</span></h1>
+        <p>Quran 13 & 15 Lines, Prayer Times, Qibla Finder, and Tasbih. Everything you need for your daily ibadah in one beautiful app.</p>
+        
+        <a href="https://github.com/noor7398shah-droid/Quran-App/releases/download/v1.0/QuranApp_v1.apk" class="download-btn">
+            <i data-lucide="download"></i>
+            Download Latest APK
+        </a>
+    </section>
+
+    <div class="slider-container">
+        <div class="slider-track">
+            <img src="1000088096.jpg" alt="Home">
+            <img src="1000088097.jpg" alt="Quick Access">
+            <img src="1000088098.jpg" alt="Menu">
+            <img src="1000088099.jpg" alt="Tasbih">
+            <img src="1000088096.jpg" alt="Home">
+            <img src="1000088097.jpg" alt="Quick Access">
+            <img src="1000088098.jpg" alt="Menu">
+            <img src="1000088099.jpg" alt="Tasbih">
+        </div>
+    </div>
+
+    <section class="features">
+        <div class="feature-item">
+            <i data-lucide="book-open" size="30"></i>
+            <h3>Quran 13/15 Lines</h3>
+        </div>
+        <div class="feature-item">
+            <i data-lucide="clock" size="30"></i>
+            <h3>Prayer Times</h3>
+        </div>
+        <div class="feature-item">
+            <i data-lucide="compass" size="30"></i>
+            <h3>Qibla Finder</h3>
+        </div>
+        <div class="feature-item">
+            <i data-lucide="fingerprint" size="30"></i>
+            <h3>Digital Tasbih</h3>
+        </div>
+    </section>
+
+    <div class="ayah-card">
+        <p class="amiri" style="font-size: 1.8rem; color: var(--primary); margin-bottom: 15px;">بیشک مشکل کے ساتھ آسانی ہے۔</p>
+        <p style="font-style: italic; opacity: 0.8;">"Indeed, with hardship [will be] ease." - (94:6)</p>
+    </div>
+
+    <footer>
+        <p>© 2026 Al Musalmeen App • Pure & Ad-Free</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
 
         .logo {
             font-size: 1.5rem;
