@@ -3,14 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Al Musalimeen | Official</title>
+<title>Al Musalimeen | Official Islamic App</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Amiri&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
 
 <style>
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-
 body{
   background:#000;
   color:white;
@@ -18,37 +16,65 @@ body{
   transition:0.4s;
 }
 
-/* LIGHT MODE */
+/* ===== THEME MODES ===== */
+
+body.ramadan{
+  background:#111;
+}
+
 body.light{
-  background:#f5f5f5;
+  background:#f4f4f4;
   color:#111;
 }
 
-body.light .card{
-  background:white;
-  color:#111;
-}
+/* ===== 8 POINT STAR SVG ===== */
 
-/* PARALLAX GLOW BACKGROUND */
-.bg-glow{
+.bg-star{
   position:fixed;
-  width:800px;
-  height:800px;
-  background:radial-gradient(circle,#0f5132 0%,transparent 70%);
-  filter:blur(120px);
-  top:-200px;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:-3;
+  opacity:0.12;
+}
+
+/* ===== MOROCCAN PATTERN ===== */
+
+.bg-morocco{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:-4;
+  opacity:0.07;
+}
+
+/* ===== GOLDEN GLOW ===== */
+
+body.ramadan::after{
+  content:"";
+  position:fixed;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle,rgba(255,215,0,0.5),transparent);
+  top:40%;
   left:50%;
-  transform:translateX(-50%);
-  z-index:-1;
-  animation:float 10s infinite alternate ease-in-out;
+  transform:translate(-50%,-50%);
+  filter:blur(140px);
+  animation:glowPulse 6s infinite ease-in-out;
+  z-index:-2;
 }
 
-@keyframes float{
-  from{transform:translateX(-50%) translateY(0)}
-  to{transform:translateX(-50%) translateY(80px)}
+@keyframes glowPulse{
+  0%{opacity:0.5}
+  50%{opacity:1}
+  100%{opacity:0.5}
 }
 
-/* HERO */
+/* ===== HERO ===== */
+
 .hero{
   height:100vh;
   display:flex;
@@ -64,15 +90,11 @@ body.light .card{
   font-weight:800;
 }
 
-.hero .arabic{
+.arabic{
   font-family:'Amiri',serif;
   font-size:26px;
+  margin-top:10px;
   opacity:0.8;
-}
-
-.hero p{
-  margin-top:15px;
-  opacity:0.7;
 }
 
 .btn{
@@ -90,15 +112,21 @@ body.light .card{
   transform:scale(1.05);
 }
 
-/* DEVICE MOCKUP */
+.stats{
+  margin-top:15px;
+  opacity:0.8;
+}
+
+/* ===== DEVICE MOCKUP ===== */
+
 .device{
-  margin-top:60px;
+  margin-top:50px;
   perspective:1000px;
 }
 
 .device img{
   width:300px;
-  border-radius:30px;
+  border-radius:25px;
   box-shadow:0 40px 100px rgba(0,255,150,0.2);
   animation:tilt 6s infinite alternate ease-in-out;
 }
@@ -108,7 +136,8 @@ body.light .card{
   to{transform:rotateY(10deg)}
 }
 
-/* SECTIONS */
+/* ===== SCROLL SECTIONS ===== */
+
 .section{
   padding:120px 20px;
   text-align:center;
@@ -124,8 +153,8 @@ body.light .card{
 
 .cards{
   display:flex;
-  justify-content:center;
   gap:30px;
+  justify-content:center;
   flex-wrap:wrap;
   margin-top:40px;
 }
@@ -134,8 +163,8 @@ body.light .card{
   width:250px;
   padding:30px;
   background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
   border-radius:20px;
+  backdrop-filter:blur(10px);
   transition:0.3s;
 }
 
@@ -143,7 +172,8 @@ body.light .card{
   transform:translateY(-10px);
 }
 
-/* TOP BAR */
+/* ===== TOPBAR ===== */
+
 .topbar{
   position:fixed;
   top:20px;
@@ -157,13 +187,8 @@ body.light .card{
   background:white;
   color:black;
   cursor:pointer;
-  font-size:14px;
-}
-
-.stats{
-  margin-top:15px;
-  font-size:14px;
-  opacity:0.8;
+  margin-left:10px;
+  font-size:13px;
 }
 
 footer{
@@ -176,20 +201,39 @@ footer{
 </head>
 <body>
 
-<div class="bg-glow"></div>
+<!-- MOROCCAN -->
+<svg class="bg-morocco" viewBox="0 0 1000 1000">
+  <defs>
+    <pattern id="morocco" width="120" height="120" patternUnits="userSpaceOnUse">
+      <circle cx="60" cy="60" r="40" stroke="rgba(0,200,120,0.3)" fill="none"/>
+      <rect x="30" y="30" width="60" height="60" stroke="rgba(0,200,120,0.3)" fill="none"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#morocco)"/>
+</svg>
+
+<!-- 8 POINT STAR -->
+<svg class="bg-star" viewBox="0 0 1000 1000">
+  <defs>
+    <pattern id="starPattern" width="200" height="200" patternUnits="userSpaceOnUse">
+      <polygon points="100,20 120,80 180,100 120,120 100,180 80,120 20,100 80,80"
+        fill="none" stroke="rgba(0,255,150,0.4)" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#starPattern)"/>
+</svg>
 
 <div class="topbar">
-  <div class="toggle" onclick="toggleMode()">🌙 Toggle</div>
+  <span class="toggle" onclick="setTheme('default')">🌙 Dark</span>
+  <span class="toggle" onclick="setTheme('ramadan')">✨ Ramadan</span>
+  <span class="toggle" onclick="setTheme('light')">☀ Light</span>
 </div>
 
 <section class="hero">
   <h1>Al Musalmeen</h1>
   <div class="arabic">المسلمين</div>
-  <p>Complete Islamic Companion App</p>
 
-  <div>
-    <strong>Latest Version:</strong> <span id="version">Loading...</span>
-  </div>
+  <div>Latest Version: <span id="version">Loading...</span></div>
 
   <a class="btn"
      href="https://github.com/noor7398shah-droid/Quran-App/releases/latest/download/AlMusalimeen_latest.apk">
@@ -221,44 +265,45 @@ footer{
 
 <script>
 
-/* SMOOTH SCROLL FADE */
+/* ===== SCROLL FADE ===== */
 const sections=document.querySelectorAll(".section");
 window.addEventListener("scroll",()=>{
   sections.forEach(sec=>{
-    const top=sec.getBoundingClientRect().top;
-    if(top<window.innerHeight-100){
+    if(sec.getBoundingClientRect().top<window.innerHeight-100){
       sec.classList.add("visible");
     }
   });
+
+  const scroll=window.scrollY;
+  document.querySelector(".bg-star").style.transform=
+    `rotate(${scroll*0.05}deg)`;
 });
 
-/* LIGHT DARK MODE */
-function toggleMode(){
-  document.body.classList.toggle("light");
+/* ===== THEME SWITCH ===== */
+function setTheme(mode){
+  document.body.className="";
+  if(mode==="ramadan") document.body.classList.add("ramadan");
+  if(mode==="light") document.body.classList.add("light");
 }
 
-/* GITHUB API LIVE VERSION + DOWNLOAD COUNT */
+/* ===== GITHUB API ===== */
 fetch("https://api.github.com/repos/noor7398shah-droid/Quran-App/releases")
 .then(res=>res.json())
 .then(data=>{
   let total=0;
-  let latest=data[0];
-  document.getElementById("version").innerText=latest.tag_name;
-
+  document.getElementById("version").innerText=data[0].tag_name;
   data.forEach(release=>{
     release.assets.forEach(asset=>{
       total+=asset.download_count;
     });
   });
-
   animateCounter(total);
 });
 
-/* ANIMATED COUNTER */
+/* ===== ANIMATED COUNTER ===== */
 function animateCounter(target){
   let count=0;
   let speed=Math.ceil(target/100);
-
   let interval=setInterval(()=>{
     count+=speed;
     if(count>=target){
