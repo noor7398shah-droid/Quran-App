@@ -1,160 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quran App | Download</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Quran Pro | Digital Spiritual Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #198754;
+            --primary-rgb: 25, 135, 84;
+            --secondary: #111827;
+            --accent: #fbbf24;
+            --bg-light: #fdfdfd;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --card-glass: rgba(255, 255, 255, 0.7);
+            --border-glass: rgba(255, 255, 255, 0.2);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Amiri&display=swap" rel="stylesheet">
+        [data-theme="dark"] {
+            --bg-light: #0b0f1a;
+            --text-dark: #f3f4f6;
+            --text-muted: #9ca3af;
+            --card-glass: rgba(31, 41, 55, 0.7);
+            --border-glass: rgba(255, 255, 255, 0.05);
+            --secondary: #198754;
+        }
 
-<style>
-:root{
-  --primary:#198754;
-  --bg:#f4f4f4;
-  --text:#222;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
 
-body.dark{
-  --bg:#0f172a;
-  --text:#ffffff;
-}
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            transition: var(--transition);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-body{
-  margin:0;
-  font-family:'Poppins', sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  transition:0.3s;
-}
+        /* --- Custom Navigation --- */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            height: 70px;
+            background: var(--card-glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 1000;
+            box-shadow: var(--shadow-xl);
+        }
 
-header{
-  background:var(--primary);
-  color:white;
-  text-align:center;
-  padding:40px 20px;
-}
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-h1{
-  margin:0;
-  font-size:32px;
-}
+        .theme-toggle {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 12px;
+            background: rgba(var(--primary-rgb), 0.1);
+            border: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
 
-.arabic{
-  font-family:'Amiri', serif;
-  font-size:26px;
-  margin-top:10px;
-}
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            padding: 180px 5% 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-height: 90vh;
+        }
 
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:30px 20px;
-  text-align:center;
-}
+        .badge {
+            background: rgba(var(--primary-rgb), 0.1);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(var(--primary-rgb), 0.2);
+        }
 
-.btn{
-  display:inline-block;
-  padding:15px 35px;
-  background:var(--primary);
-  color:white;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:600;
-  margin-top:20px;
-}
+        .arabic-hero {
+            font-family: 'Amiri', serif;
+            font-size: clamp(4rem, 10vw, 6rem);
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, var(--primary), #0d5132);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
 
-.screenshots{
-  display:flex;
-  gap:20px;
-  overflow-x:auto;
-  margin-top:30px;
-}
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
 
-.screenshots img{
-  width:200px;
-  border-radius:15px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
-}
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 40px;
+        }
 
-.rating{
-  margin-top:40px;
-  font-size:18px;
-}
+        .cta-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-.stars{
-  color:gold;
-  font-size:24px;
-}
+        .btn-main {
+            background: var(--primary);
+            color: white;
+            padding: 20px 45px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 20px 40px rgba(var(--primary-rgb), 0.3);
+            transition: var(--transition);
+        }
 
-.qr{
-  margin-top:40px;
-}
+        .btn-main:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(var(--primary-rgb), 0.4);
+        }
 
-.toggle{
-  position:fixed;
-  top:15px;
-  right:15px;
-  background:black;
-  color:white;
-  padding:8px 15px;
-  border-radius:20px;
-  cursor:pointer;
-  font-size:14px;
-}
+        /* --- App Showcase Gallery --- */
+        .showcase {
+            margin-top: -50px;
+            padding-bottom: 100px;
+        }
 
-footer{
-  text-align:center;
-  padding:20px;
-  font-size:12px;
-  opacity:0.7;
-}
-</style>
+        .slider-wrapper {
+            display: flex;
+            overflow-x: auto;
+            gap: 40px;
+            padding: 40px 10%;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .slider-wrapper::-webkit-scrollbar { display: none; }
+
+        .mockup {
+            flex: 0 0 300px;
+            height: 600px;
+            border-radius: 45px;
+            background: #000;
+            border: 12px solid #1a1a1a;
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .mockup img { width: 100%; height: 100%; object-fit: cover; }
+
+        .mockup:hover {
+            transform: scale(1.05) translateY(-20px) rotate(2deg);
+            z-index: 10;
+        }
+
+        /* --- Features/Rating Card --- */
+        .grid-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 50px 10%;
+        }
+
+        .glass-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            padding: 40px;
+            border-radius: 32px;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            border-color: var(--primary);
+        }
+
+        .rating-num { font-size: 3.5rem; font-weight: 800; color: var(--primary); line-height: 1; }
+        .stars { color: var(--accent); font-size: 1.4rem; margin: 15px 0; }
+
+        /* --- QR Section --- */
+        .qr-section {
+            background: var(--secondary);
+            margin: 100px 5%;
+            padding: 80px 40px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qr-content { max-width: 500px; text-align: left; }
+        .qr-content h2 { font-size: 2.5rem; margin-bottom: 20px; }
+
+        .qr-code-box {
+            background: white;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transition: var(--transition);
+        }
+
+        .qr-code-box:hover { transform: rotate(-5deg); }
+
+        /* --- Footer --- */
+        footer {
+            padding: 100px 10% 40px;
+            text-align: center;
+            border-top: 1px solid var(--border-glass);
+        }
+
+        .install-guide {
+            background: rgba(var(--primary-rgb), 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            display: inline-block;
+            max-width: 800px;
+        }
+
+        /* --- Animations --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float { animation: float 6s ease-in-out infinite; }
+
+        @media (max-width: 768px) {
+            nav { width: 95%; padding: 0 15px; }
+            .hero { padding-top: 140px; }
+            .cta-container { flex-direction: column; }
+            .qr-content { text-align: center; margin-bottom: 40px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="toggle" onclick="toggleMode()">🌙 Dark Mode</div>
+    <nav>
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="10" fill="#198754"/><path d="M24 12L14 18V30L24 36L34 30V18L24 12Z" stroke="white" stroke-width="3" stroke-linejoin="round"/></svg>
+            AL-QURAN PRO
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <svg id="moon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg id="sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+    </nav>
 
-<header>
-  <h1>📖 Quran App</h1>
-  <div class="arabic">القرآن الكريم</div>
-  <p>Read Holy Quran Anytime, Anywhere</p>
-</header>
+    <section class="hero">
+        <div class="badge">Google Play Editors' Choice</div>
+        <div class="arabic-hero">القرآن الكريم</div>
+        <h1>Elegance in Every <br>Ayat.</h1>
+        <p>A masterfully crafted Quranic application that blends ancient wisdom with cutting-edge design. Read, listen, and reflect without distractions.</p>
+        
+        <div class="cta-container">
+            <a href="#" class="btn-main">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download APK v4.9.2
+            </a>
+        </div>
+    </section>
 
-<div class="container">
+    <section class="showcase">
+        <div class="slider-wrapper" id="slider">
+            <div class="mockup float" style="animation-delay: 0s;"><img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=400" alt="App Screen"></div>
+            <div class="mockup float" style="animation-delay: 0.5s;"><img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&q=80&w=400" alt="App Screen"></div>
+            <div class="mockup float" style="animation-delay: 1s;"><img src="https://images.unsplash.com/photo-1591453089224-d23259b35999?auto=format&fit=crop&q=80&w=400" alt="App Screen"></div>
+            <div class="mockup float" style="animation-delay: 1.5s;"><img src="https://images.unsplash.com/photo-1584281723351-95ad975779fc?auto=format&fit=crop&q=80&w=400" alt="App Screen"></div>
+        </div>
+    </section>
 
-  <a class="btn" href="https://github.com/noor7398shah-droid/Quran-App/releases/download/v1.0/QuranApp_v1.apk">
-    Download Now
-  </a>
+    <div class="grid-section">
+        <div class="glass-card">
+            <div class="rating-num">4.92</div>
+            <div class="stars">★★★★★</div>
+            <p style="font-weight: 700;">Global Satisfaction</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Based on 1.2M reviews across all platforms.</p>
+        </div>
+        <div class="glass-card">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🛡️</div>
+            <h3>100% Ads Free</h3>
+            <p style="color: var(--text-muted); margin-top: 15px;">We believe spirituality should not be interrupted by monetization.</p>
+        </div>
+        <div class="glass-card">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🌍</div>
+            <h3>150+ Translations</h3>
+            <p style="color: var(--text-muted); margin-top: 15px;">Understand the message in your mother tongue with authentic sources.</p>
+        </div>
+    </div>
 
-  <div class="screenshots">
-    <img src="https://via.placeholder.com/200x400?text=Screenshot+1">
-    <img src="https://via.placeholder.com/200x400?text=Screenshot+2">
-    <img src="https://via.placeholder.com/200x400?text=Screenshot+3">
-  </div>
+    <section class="qr-section">
+        <div class="qr-content">
+            <h2>Seamless Sync</h2>
+            <p>Ready to continue your journey? Scan the code to download the latest version directly to your device.</p>
+        </div>
+        <div class="qr-code-box">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://example.com/download&color=198754" alt="QR">
+            <p style="color: #666; font-weight: bold; margin-top: 10px; text-align: center;">SCAN TO START</p>
+        </div>
+    </section>
 
-  <div class="rating">
-    <h2>User Rating</h2>
-    <div class="stars">★★★★★</div>
-    <p>4.9 / 5 based on user feedback</p>
-  </div>
+    <footer>
+        <div class="install-guide">
+            <h4 style="margin-bottom: 10px;">System Requirements</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Android 8.0+ | Minimum 100MB Space | High-speed internet for audio streaming. Please ensure you allow "Install Apps from Unknown Sources" in your device settings.</p>
+        </div>
+        <p style="font-weight: 600; opacity: 0.8;">© 2026 Al-Quran Pro Foundation. Dedicated to the Global Ummah.</p>
+    </footer>
 
-  <div class="qr">
-    <h2>Scan to Download</h2>
-    <img src="QuranApp_Direct_Download_QR.png" width="180">
-  </div>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const moon = document.getElementById('moon');
+            const sun = document.getElementById('sun');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                moon.style.display = 'block';
+                sun.style.display = 'none';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                moon.style.display = 'none';
+                sun.style.display = 'block';
+            }
+        }
 
-</div>
+        // Horizontal Auto-Scroll interaction
+        const slider = document.getElementById('slider');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-<footer>
-Enable "Install from Unknown Sources" before installing.
-</footer>
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => isDown = false);
+        slider.addEventListener('mouseup', () => isDown = false);
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        });
 
-<script>
-function toggleMode(){
-  document.body.classList.toggle("dark");
-}
-</script>
-
+        // Parallax scroll effect for mockups
+        window.addEventListener('scroll', () => {
+            const mockups = document.querySelectorAll('.mockup');
+            let value = window.scrollY;
+            mockups.forEach((el, index) => {
+                el.style.transform = `translateY(${value * 0.05 * (index + 1)}px)`;
+            });
+        });
+    </script>
 </body>
 </html>
