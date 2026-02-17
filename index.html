@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-:root {
+:root{
 --primary:#facc15;
 --bg-dark:#062216;
 --card-green:#113d2c;
@@ -77,36 +77,7 @@ color:var(--text-dim);
 font-size:.8rem;
 }
 
-/* Comments */
-.comment{
-background:#113d2c;
-padding:12px;
-margin:10px auto;
-max-width:600px;
-border-radius:12px;
-text-align:left;
-position:relative;
-animation:fadeIn .4s ease;
-}
-.comment strong{color:var(--primary);}
-.delete-btn{
-position:absolute;
-right:10px;
-top:10px;
-background:red;
-color:#fff;
-font-size:11px;
-padding:3px 6px;
-border-radius:5px;
-cursor:pointer;
-display:none;
-}
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(8px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-/* Hidden Admin Panel */
+/* Admin Panel (UI kept) */
 #adminPanel{
 display:none;
 position:fixed;
@@ -135,16 +106,16 @@ text-align:center;
 <p style="color:var(--text-dim);margin-top:15px;font-size:.9rem;">Ad-free Quran, Prayer Times, Tasbih & more.</p>
 
 <a href="https://github.com/noor7398shah-droid/Quran-App/releases/latest/download/AlMusalimeen_latest.apk"
-class="download-btn" id="downloadBtn">
-<i data-lucide="download"></i> DOWNLOADED SECURE APK
+class="download-btn">
+<i data-lucide="download"></i> DOWNLOAD SECURE APK
 </a>
 
 <div class="live-count">
- Total Downloads: <span id="downloadCount">0</span>
+Total Downloads: <span id="downloadCount">Loading...</span>
 </div>
 </section>
 
-<!-- SLIDER SAME -->
+<!-- Slider -->
 <div class="slider-container">
 <div class="slider-track">
 <img src="https://noor7398shah-droid.github.io/Quran-App/1000088096.jpg">
@@ -158,7 +129,7 @@ class="download-btn" id="downloadBtn">
 </div>
 </div>
 
-<!-- FEATURES SAME -->
+<!-- Features -->
 <section class="features">
 <div class="feature-item"><i data-lucide="book-marked" size="28"></i><h3>Quran Majeed</h3></div>
 <div class="feature-item"><i data-lucide="bell-ring" size="28"></i><h3>Prayer Times</h3></div>
@@ -166,94 +137,46 @@ class="download-btn" id="downloadBtn">
 <div class="feature-item"><i data-lucide="list-check" size="28"></i><h3>Digital Tasbih</h3></div>
 </section>
 
-<!-- AYAH SAME -->
+<!-- Ayah -->
 <div class="ayah-card">
 <p class="amiri" style="font-size:2.2rem;color:var(--primary);">بیشک مشکل کے ساتھ آسانی ہے۔</p>
-<p style="font-size:.9rem;opacity:.8;margin-top:15px;">"Indeed, with hardship [will be] ease."<br><b>Surah Ash-Sharh 94:6</b></p>
+<p style="font-size:.9rem;opacity:.8;margin-top:15px;">
+"Indeed, with hardship [will be] ease."<br>
+<b>Surah Ash-Sharh 94:6</b>
+</p>
 </div>
 
 <footer>
-<p style="margin-top:30px;">© 2026 Al Musalmeen • Built for the Ummah by Noor Ali</p>
+<p>© 2026 Al Musalimeen • Built for the Ummah by Noor Ali</p>
 </footer>
 
-<!-- Hidden Admin -->
+<!-- Hidden Admin UI only -->
 <div id="adminPanel">
-<h3>Admin Login</h3>
-<input type="password" id="adminPass" placeholder="Password">
-<br><br>
-<button onclick="loginAdmin()">Login</button>
+<h3>Admin Panel</h3>
+<p>Secure system coming soon</p>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, increment, collection, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
-
-const firebaseConfig={
-apiKey:"AIzaSyCOiq6WTI-o0pZEZZgW_qmg6lV31X1EtoE",
-authDomain:"quran-app-46a14.firebaseapp.com",
-projectId:"quran-app-46a14"
-};
-
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
-
-/* DOWNLOAD COUNTER */
-const counterRef=doc(db,"appData","downloads");
-async function initCounter(){
-const snap=await getDoc(counterRef);
-if(!snap.exists()) await setDoc(counterRef,{count:0});
-}
-initCounter();
-
-onSnapshot(counterRef,(snap)=>{
-if(snap.exists())
-document.getElementById("downloadCount").innerText=snap.data().count;
+<!-- GitHub Professional Counter -->
+<script>
+async function loadDownloadCount(){
+try{
+const response=await fetch("https://api.github.com/repos/noor7398shah-droid/Quran-App/releases/latest");
+const data=await response.json();
+let total=0;
+if(data.assets){
+data.assets.forEach(asset=>{
+total+=asset.download_count;
 });
-
-document.getElementById("downloadBtn").addEventListener("click",async()=>{
-await updateDoc(counterRef,{count:increment(1)});
-});
-
-/* COMMENTS VIEW ONLY */
-const commentsRef=collection(db,"comments");
-const q=query(commentsRef,orderBy("time"));
-onSnapshot(q,(snapshot)=>{
-const list=document.getElementById("commentsList");
-list.innerHTML="";
-snapshot.forEach((docSnap)=>{
-const data=docSnap.data();
-const div=document.createElement("div");
-div.className="comment";
-div.innerHTML="<strong>"+data.name+"</strong><br>"+data.text;
-if(window.isAdmin){
-const del=document.createElement("div");
-del.className="delete-btn";
-del.style.display="block";
-del.innerText="Delete";
-del.onclick=async()=>{await deleteDoc(doc(db,"comments",docSnap.id));};
-div.appendChild(del);
 }
-list.appendChild(div);
-});
-});
-
-/* ADMIN */
-window.isAdmin=false;
-const ADMIN_PASSWORD="786786";
-
-window.loginAdmin=function(){
-if(document.getElementById("adminPass").value===ADMIN_PASSWORD){
-window.isAdmin=true;
-document.getElementById("adminPanel").style.display="none";
-alert("Admin Mode Activated");
+document.getElementById("downloadCount").innerText=total;
+}catch(e){
+document.getElementById("downloadCount").innerText="—";
 }
-};
-
-if(window.location.pathname==="/admin"){
-document.getElementById("adminPanel").style.display="block";
 }
+loadDownloadCount();
 </script>
 
 <script>lucide.createIcons();</script>
+
 </body>
 </html>
