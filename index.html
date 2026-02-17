@@ -1,186 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al Musalimeen | Your Deen Companion</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #facc15; 
-            --bg-dark: #062216;  
-            --card-green: #113d2c;
-            --text-main: #ffffff;
-            --text-dim: rgba(255, 255, 255, 0.7);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al Musalimeen | Premium Deen Companion</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
-            width: 100%;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-        .amiri { font-family: 'Amiri', serif; }
+<style>
+:root{
+--primary:#facc15;
+--bg1:#041a11;
+--bg2:#0b3a28;
+--glass:rgba(255,255,255,0.05);
+--border:rgba(255,255,255,0.15);
+--text:rgba(255,255,255,0.9);
+--dim:rgba(255,255,255,0.6);
+}
 
-        nav {
-            padding: 1rem 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky; top: 0; z-index: 1000;
-            background: rgba(6, 34, 22, 0.95);
-            backdrop-filter: blur(10px);
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Plus Jakarta Sans',sans-serif;
+}
 
-        .logo { font-size: 1.3rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+body{
+min-height:100vh;
+background: radial-gradient(circle at top left,var(--bg2),var(--bg1));
+color:var(--text);
+overflow-x:hidden;
+}
 
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 50px 8% 20px;
-            text-align: center;
-        }
+.amiri{font-family:'Amiri',serif;}
 
-        .hero h1 {
-            font-size: clamp(2rem, 8vw, 3rem);
-            font-weight: 800;
-            line-height: 1.1;
-        }
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:1rem 8%;
+backdrop-filter:blur(15px);
+background:var(--glass);
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:100;
+}
 
-        .download-btn {
-            background: var(--primary);
-            color: #000;
-            padding: 16px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 25px;
-            box-shadow: 0 10px 30px rgba(250, 204, 21, 0.3);
-            transition: 0.3s;
-        }
+.logo{
+font-weight:800;
+color:var(--primary);
+letter-spacing:1px;
+}
 
-        /* Fixed Premium Slider */
-        .slider-container {
-            width: 100%;
-            overflow: hidden;
-            padding: 40px 0;
-            position: relative;
-        }
+.hero{
+padding:80px 8% 40px;
+text-align:center;
+}
 
-        .slider-track {
-            display: flex;
-            width: max-content;
-            animation: scroll 25s linear infinite;
-            gap: 25px;
-        }
+.hero h1{
+font-size:clamp(2rem,7vw,3rem);
+font-weight:800;
+line-height:1.1;
+}
 
-        .slider-track img {
-            width: 230px; 
-            height: auto;
-            border-radius: 24px;
-            border: 5px solid var(--card-green);
-            flex-shrink: 0;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
+.hero p{
+margin-top:15px;
+color:var(--dim);
+}
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+.download-btn{
+margin-top:30px;
+display:inline-block;
+padding:18px 45px;
+border-radius:50px;
+background:linear-gradient(135deg,var(--primary),#f59e0b);
+color:#000;
+font-weight:800;
+text-decoration:none;
+box-shadow:0 15px 40px rgba(250,204,21,0.4);
+transition:0.3s ease;
+}
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            padding: 20px 8%;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+.download-btn:hover{
+transform:scale(1.05);
+}
 
-        .feature-item {
-            background: var(--card-green);
-            padding: 25px 15px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(250, 204, 21, 0.05);
-        }
+.glass-section{
+margin:50px 8%;
+padding:35px;
+border-radius:30px;
+background:var(--glass);
+backdrop-filter:blur(20px);
+border:1px solid var(--border);
+box-shadow:0 20px 50px rgba(0,0,0,0.5);
+}
 
-        .feature-item i { color: var(--primary); margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;}
-        .feature-item h3 { font-size: 0.85rem; font-weight: 700; }
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:20px;
+margin-top:20px;
+}
 
-        .ayah-card {
-            background: linear-gradient(135deg, var(--card-green), #041a11);
-            margin: 30px 8% 60px;
-            padding: 40px 25px;
-            border-radius: 30px;
-            text-align: center;
-            border-left: 5px solid var(--primary);
-        }
+.feature-card{
+padding:25px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+text-align:center;
+transition:0.3s;
+}
 
-        footer {
-            padding: 40px;
-            text-align: center;
-            background: #03140d;
-            color: var(--text-dim);
-            font-size: 0.8rem;
-        }
-    </style>
+.feature-card:hover{
+background:rgba(255,255,255,0.08);
+transform:translateY(-5px);
+}
+
+.feature-card h3{
+margin-top:10px;
+font-size:0.9rem;
+}
+
+.ayah{
+text-align:center;
+margin-top:20px;
+}
+
+.ayah .arabic{
+font-size:2rem;
+color:var(--primary);
+}
+
+footer{
+text-align:center;
+padding:40px;
+color:var(--dim);
+font-size:0.8rem;
+}
+</style>
 </head>
+
 <body>
 
-    <nav>
-        <div class="logo"><i data-lucide="moon-star"></i> Al Musalimeen</div>
-        <div style="font-size: 0.65rem; color: var(--primary); border: 1px solid var(--primary); padding: 4px 12px; border-radius: 50px; font-weight: 800;">PREMIUM</div>
-    </nav>
+<nav>
+<div class="logo">Al Musalimeen</div>
+<div style="color:var(--primary);font-size:0.7rem;font-weight:700;">PREMIUM</div>
+</nav>
 
-    <section class="hero">
-        <h1 class="amiri" style="color: var(--primary); font-size: 3.5rem; margin-bottom: 5px;">السلام عليكم</h1>
-        <h1>Your Premium Deen<br>Companion</h1>
-        <p style="color: var(--text-dim); margin-top: 15px; font-size: 0.9rem;">Ad-free Quran, Prayer Times, Tasbih & more.</p>
-        <a href="https://github.com/noor7398shah-droid/Quran-App/releases/download/v1.0/QuranApp_v1.apk" class="download-btn">
-            <i data-lucide="download"></i> DOWNLOAD APK
-        </a>
-    </section>
+<section class="hero">
+<h1 class="amiri" style="color:var(--primary);font-size:3.2rem;">السلام عليكم</h1>
+<h1>Your Premium Deen Companion</h1>
+<p>Ad-free Quran, Prayer Times, Qibla & Tasbih.</p>
 
-    <div class="slider-container">
-        <div class="slider-track">
-            <img src="https://noor7398shah-droid.github.io/Quran-App/1000088096.jpg">
-            <img src="https://noor7398shah-droid.github.io/Quran-App/1000088097.jpg">
-            <img src="https://noor7398shah-droid.github.io/Quran-App/1000088098.jpg">
-            <img src="https://noor7398shah-droid.github.io/Quran-App/1000088099.jpg">
-            <img src="https://noor7398shah-droid.github.io/Quran-App/1000088096.jpg">
-            <img src="https://noor7398shah-droid.github.io/Quran-App/1000088097.jpg">
-            <img src="https://noor7398shah-droid.github.io/Quran-App/1000088098.jpg">
-            <img src="https://noor7398shah-droid.github.io/Quran-App/1000088099.jpg">
-        </div>
-    </div>
+<a href="#" class="download-btn">
+Download Secure APK
+</a>
 
-    <section class="features">
-        <div class="feature-item"><i data-lucide="book-marked" size="28"></i><h3>Quran Majeed</h3></div>
-        <div class="feature-item"><i data-lucide="bell-ring" size="28"></i><h3>Prayer Times</h3></div>
-        <div class="feature-item"><i data-lucide="navigation-2" size="28"></i><h3>Qibla Finder</h3></div>
-        <div class="feature-item"><i data-lucide="list-check" size="28"></i><h3>Digital Tasbih</h3></div>
-    </section>
+<p style="margin-top:12px;font-size:0.7rem;color:var(--dim);">
+No ads • Lightweight • 100% Offline Quran
+</p>
+</section>
 
-    <div class="ayah-card">
-        <p class="amiri" style="font-size: 2.2rem; color: var(--primary);">بیشک مشکل کے ساتھ آسانی ہے۔</p>
-        <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 15px;">"Indeed, with hardship [will be] ease."<br><b>Surah Ash-Sharh 94:6</b></p>
-    </div>
+<div class="glass-section">
+<h2 style="text-align:center;color:var(--primary);">Core Features</h2>
 
-    <footer>
-        <p>© 2026 Al Musalmeen • Built for the Ummah by Noor Ali</p>
-    </footer>
+<div class="features">
 
-    <script>
-        lucide.createIcons();
-    </script>
+<div class="feature-card">
+<h3>Quran Majeed</h3>
+</div>
+
+<div class="feature-card">
+<h3>Prayer Times</h3>
+</div>
+
+<div class="feature-card">
+<h3>Qibla Finder</h3>
+</div>
+
+<div class="feature-card">
+<h3>Digital Tasbih</h3>
+</div>
+
+</div>
+
+<div class="ayah">
+<p class="arabic amiri">إِنَّ مَعَ الْعُسْرِ يُسْرًا</p>
+<p style="margin-top:10px;font-size:0.8rem;color:var(--dim);">
+Indeed, with hardship comes ease • Surah Ash-Sharh 94:6
+</p>
+</div>
+
+</div>
+
+<footer>
+© 2026 Al Musalimeen • Built by Noor Ali
+</footer>
+
 </body>
 </html>
