@@ -16,25 +16,15 @@
 --text-main:#fff;
 --text-dim:rgba(255,255,255,0.7);
 }
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif;}
-
 body{background:var(--bg-dark);color:var(--text-main);overflow-x:hidden;}
-
 .amiri{font-family:'Amiri',serif;}
 
-nav{
-padding:1rem 8%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;top:0;
-background:rgba(6,34,22,.95);
-}
-
+nav{padding:1rem 8%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000;background:rgba(6,34,22,.95);backdrop-filter:blur(10px);}
 .logo{font-size:1.3rem;font-weight:800;color:var(--primary);display:flex;gap:10px;}
 
 .hero{display:flex;flex-direction:column;align-items:center;padding:50px 8% 20px;text-align:center;}
+.hero h1{font-size:clamp(2rem,8vw,3rem);font-weight:800;line-height:1.1;}
 
 .download-btn{
 background:var(--primary);
@@ -44,59 +34,61 @@ border-radius:50px;
 text-decoration:none;
 font-weight:800;
 display:inline-flex;
+align-items:center;
 gap:12px;
 margin-top:25px;
+box-shadow:0 10px 30px rgba(250,204,21,.3);
 }
 
 .live-count{
 margin-top:12px;
-font-weight:600;
+font-weight:700;
 color:var(--primary);
 }
 
+/* Slider */
 .slider-container{width:100%;overflow:hidden;padding:40px 0;}
 .slider-track{display:flex;width:max-content;animation:scroll 25s linear infinite;gap:25px;}
-.slider-track img{width:230px;border-radius:24px;border:5px solid var(--card-green);}
+.slider-track img{width:230px;border-radius:24px;border:5px solid var(--card-green);box-shadow:0 15px 35px rgba(0,0,0,.4);}
+@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-@keyframes scroll{
-0%{transform:translateX(0);}
-100%{transform:translateX(-50%);}
-}
-
+/* Features */
 .features{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;padding:20px 8%;max-width:600px;margin:0 auto;}
+.feature-item{background:var(--card-green);padding:25px 15px;border-radius:20px;text-align:center;border:1px solid rgba(250,204,21,.05);}
+.feature-item i{color:var(--primary);margin-bottom:10px;display:block;}
+.feature-item h3{font-size:.85rem;font-weight:700;}
 
-.feature-item{background:var(--card-green);padding:25px 15px;border-radius:20px;text-align:center;}
-
+/* Ayah */
 .ayah-card{
 background:linear-gradient(135deg,var(--card-green),#041a11);
 margin:30px 8% 60px;
 padding:40px 25px;
 border-radius:30px;
-border-left:5px solid var(--primary);
 text-align:center;
+border-left:5px solid var(--primary);
 }
 
+/* Footer */
 footer{
 padding:40px;
+text-align:center;
 background:#03140d;
 color:var(--text-dim);
-text-align:center;
+font-size:.8rem;
 }
 
-/* COMMENTS */
+/* Comments */
 .comment{
 background:#113d2c;
 padding:12px;
-margin:8px auto;
-max-width:500px;
+margin:10px auto;
+max-width:600px;
 border-radius:12px;
 text-align:left;
-animation:fadeIn .4s ease;
 position:relative;
+animation:fadeIn .4s ease;
 }
-
 .comment strong{color:var(--primary);}
-
 .delete-btn{
 position:absolute;
 right:10px;
@@ -105,16 +97,16 @@ background:red;
 color:#fff;
 font-size:11px;
 padding:3px 6px;
-border-radius:4px;
+border-radius:5px;
 cursor:pointer;
 display:none;
 }
-
 @keyframes fadeIn{
 from{opacity:0;transform:translateY(8px);}
 to{opacity:1;transform:translateY(0);}
 }
 
+/* Hidden Admin Panel */
 #adminPanel{
 display:none;
 position:fixed;
@@ -124,7 +116,7 @@ transform:translate(-50%,-50%);
 background:#113d2c;
 padding:30px;
 border-radius:20px;
-z-index:999;
+z-index:9999;
 text-align:center;
 }
 </style>
@@ -138,7 +130,7 @@ text-align:center;
 </nav>
 
 <section class="hero">
-<h1 class="amiri" style="color:var(--primary);font-size:3.5rem;">السلام عليكم</h1>
+<h1 class="amiri" style="color:var(--primary);font-size:3.5rem;margin-bottom:5px;">السلام عليكم</h1>
 <h1>Your Premium Deen<br>Companion</h1>
 <p style="color:var(--text-dim);margin-top:15px;font-size:.9rem;">Ad-free Quran, Prayer Times, Tasbih & more.</p>
 
@@ -150,11 +142,35 @@ class="download-btn" id="downloadBtn">
 <div class="live-count">
 🔥 Total Downloads: <span id="downloadCount">0</span>
 </div>
-
 </section>
 
-<!-- SLIDER + FEATURES + AYAH SAME -->
-<!-- (No changes — same as your original) -->
+<!-- SLIDER SAME -->
+<div class="slider-container">
+<div class="slider-track">
+<img src="https://noor7398shah-droid.github.io/Quran-App/1000088096.jpg">
+<img src="https://noor7398shah-droid.github.io/Quran-App/1000088097.jpg">
+<img src="https://noor7398shah-droid.github.io/Quran-App/1000088098.jpg">
+<img src="https://noor7398shah-droid.github.io/Quran-App/1000088099.jpg">
+<img src="https://noor7398shah-droid.github.io/Quran-App/1000088096.jpg">
+<img src="https://noor7398shah-droid.github.io/Quran-App/1000088097.jpg">
+<img src="https://noor7398shah-droid.github.io/Quran-App/1000088098.jpg">
+<img src="https://noor7398shah-droid.github.io/Quran-App/1000088099.jpg">
+</div>
+</div>
+
+<!-- FEATURES SAME -->
+<section class="features">
+<div class="feature-item"><i data-lucide="book-marked" size="28"></i><h3>Quran Majeed</h3></div>
+<div class="feature-item"><i data-lucide="bell-ring" size="28"></i><h3>Prayer Times</h3></div>
+<div class="feature-item"><i data-lucide="navigation-2" size="28"></i><h3>Qibla Finder</h3></div>
+<div class="feature-item"><i data-lucide="list-check" size="28"></i><h3>Digital Tasbih</h3></div>
+</section>
+
+<!-- AYAH SAME -->
+<div class="ayah-card">
+<p class="amiri" style="font-size:2.2rem;color:var(--primary);">بیشک مشکل کے ساتھ آسانی ہے۔</p>
+<p style="font-size:.9rem;opacity:.8;margin-top:15px;">"Indeed, with hardship [will be] ease."<br><b>Surah Ash-Sharh 94:6</b></p>
+</div>
 
 <footer>
 <h3 style="color:var(--primary);margin-bottom:15px;">User Feedback</h3>
@@ -162,25 +178,22 @@ class="download-btn" id="downloadBtn">
 <p style="margin-top:30px;">© 2026 Al Musalmeen • Built for the Ummah by Noor Ali</p>
 </footer>
 
-<!-- ADMIN PANEL (Hidden) -->
+<!-- Hidden Admin -->
 <div id="adminPanel">
 <h3>Admin Login</h3>
-<input type="password" id="adminPass" placeholder="Enter Password">
+<input type="password" id="adminPass" placeholder="Password">
 <br><br>
 <button onclick="loginAdmin()">Login</button>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, increment, collection, addDoc, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, increment, collection, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
 const firebaseConfig={
 apiKey:"AIzaSyCOiq6WTI-o0pZEZZgW_qmg6lV31X1EtoE",
 authDomain:"quran-app-46a14.firebaseapp.com",
-projectId:"quran-app-46a14",
-storageBucket:"quran-app-46a14.firebasestorage.app",
-messagingSenderId:"78951826879",
-appId:"1:78951826879:web:9c82b02b121915e6754d0a"
+projectId:"quran-app-46a14"
 };
 
 const app=initializeApp(firebaseConfig);
@@ -188,7 +201,6 @@ const db=getFirestore(app);
 
 /* DOWNLOAD COUNTER */
 const counterRef=doc(db,"appData","downloads");
-
 async function initCounter(){
 const snap=await getDoc(counterRef);
 if(!snap.exists()) await setDoc(counterRef,{count:0});
@@ -196,16 +208,16 @@ if(!snap.exists()) await setDoc(counterRef,{count:0});
 initCounter();
 
 onSnapshot(counterRef,(snap)=>{
-if(snap.exists()) document.getElementById("downloadCount").innerText=snap.data().count;
+if(snap.exists())
+document.getElementById("downloadCount").innerText=snap.data().count;
 });
 
 document.getElementById("downloadBtn").addEventListener("click",async()=>{
 await updateDoc(counterRef,{count:increment(1)});
 });
 
-/* COMMENTS */
+/* COMMENTS VIEW ONLY */
 const commentsRef=collection(db,"comments");
-
 const q=query(commentsRef,orderBy("time"));
 onSnapshot(q,(snapshot)=>{
 const list=document.getElementById("commentsList");
@@ -215,7 +227,6 @@ const data=docSnap.data();
 const div=document.createElement("div");
 div.className="comment";
 div.innerHTML="<strong>"+data.name+"</strong><br>"+data.text;
-
 if(window.isAdmin){
 const del=document.createElement("div");
 del.className="delete-btn";
@@ -224,24 +235,22 @@ del.innerText="Delete";
 del.onclick=async()=>{await deleteDoc(doc(db,"comments",docSnap.id));};
 div.appendChild(del);
 }
-
 list.appendChild(div);
 });
 });
 
-/* ADMIN HIDDEN */
-const ADMIN_PASSWORD="786786";
+/* ADMIN */
 window.isAdmin=false;
+const ADMIN_PASSWORD="786786";
 
 window.loginAdmin=function(){
 if(document.getElementById("adminPass").value===ADMIN_PASSWORD){
 window.isAdmin=true;
 document.getElementById("adminPanel").style.display="none";
 alert("Admin Mode Activated");
-}else alert("Wrong Password");
+}
 };
 
-/* /admin OPEN */
 if(window.location.pathname==="/admin"){
 document.getElementById("adminPanel").style.display="block";
 }
