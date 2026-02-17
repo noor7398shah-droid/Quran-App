@@ -20,11 +20,38 @@
 body{background:var(--bg-dark);color:var(--text-main);overflow-x:hidden;}
 .amiri{font-family:'Amiri',serif;}
 
-nav{padding:1rem 8%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000;background:rgba(6,34,22,.95);backdrop-filter:blur(10px);}
-.logo{font-size:1.3rem;font-weight:800;color:var(--primary);display:flex;gap:10px;}
+nav{
+padding:1rem 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(6,34,22,.95);
+backdrop-filter:blur(10px);
+}
+.logo{
+font-size:1.3rem;
+font-weight:800;
+color:var(--primary);
+display:flex;
+gap:10px;
+align-items:center;
+}
 
-.hero{display:flex;flex-direction:column;align-items:center;padding:50px 8% 20px;text-align:center;}
-.hero h1{font-size:clamp(2rem,8vw,3rem);font-weight:800;line-height:1.1;}
+.hero{
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:50px 8% 20px;
+text-align:center;
+}
+.hero h1{
+font-size:clamp(2rem,8vw,3rem);
+font-weight:800;
+line-height:1.1;
+}
 
 .download-btn{
 background:var(--primary);
@@ -38,25 +65,68 @@ align-items:center;
 gap:12px;
 margin-top:25px;
 box-shadow:0 10px 30px rgba(250,204,21,.3);
+transition:.3s;
+}
+.download-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 15px 40px rgba(250,204,21,.4);
 }
 
 .live-count{
-margin-top:12px;
+margin-top:15px;
 font-weight:700;
 color:var(--primary);
+font-size:.9rem;
 }
 
 /* Slider */
-.slider-container{width:100%;overflow:hidden;padding:40px 0;}
-.slider-track{display:flex;width:max-content;animation:scroll 25s linear infinite;gap:25px;}
-.slider-track img{width:230px;border-radius:24px;border:5px solid var(--card-green);box-shadow:0 15px 35px rgba(0,0,0,.4);}
-@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.slider-container{
+width:100%;
+overflow:hidden;
+padding:40px 0;
+}
+.slider-track{
+display:flex;
+width:max-content;
+animation:scroll 25s linear infinite;
+gap:25px;
+}
+.slider-track img{
+width:230px;
+border-radius:24px;
+border:5px solid var(--card-green);
+box-shadow:0 15px 35px rgba(0,0,0,.4);
+}
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
 
 /* Features */
-.features{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;padding:20px 8%;max-width:600px;margin:0 auto;}
-.feature-item{background:var(--card-green);padding:25px 15px;border-radius:20px;text-align:center;border:1px solid rgba(250,204,21,.05);}
-.feature-item i{color:var(--primary);margin-bottom:10px;display:block;}
-.feature-item h3{font-size:.85rem;font-weight:700;}
+.features{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+padding:20px 8%;
+max-width:600px;
+margin:0 auto;
+}
+.feature-item{
+background:var(--card-green);
+padding:25px 15px;
+border-radius:20px;
+text-align:center;
+border:1px solid rgba(250,204,21,.05);
+}
+.feature-item i{
+color:var(--primary);
+margin-bottom:10px;
+display:block;
+}
+.feature-item h3{
+font-size:.85rem;
+font-weight:700;
+}
 
 /* Ayah */
 .ayah-card{
@@ -76,34 +146,29 @@ background:#03140d;
 color:var(--text-dim);
 font-size:.8rem;
 }
-
-/* Admin Panel (UI kept) */
-#adminPanel{
-display:none;
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:#113d2c;
-padding:30px;
-border-radius:20px;
-z-index:9999;
-text-align:center;
-}
 </style>
 </head>
 
 <body>
 
 <nav>
-<div class="logo"><i data-lucide="moon-star"></i> Al Musalimeen</div>
-<div style="font-size:.65rem;color:var(--primary);border:1px solid var(--primary);padding:4px 12px;border-radius:50px;font-weight:800;">PREMIUM</div>
+<div class="logo">
+<i data-lucide="moon-star"></i> 
+Al Musalimeen
+</div>
+<div style="font-size:.65rem;color:var(--primary);border:1px solid var(--primary);padding:4px 12px;border-radius:50px;font-weight:800;">
+PREMIUM
+</div>
 </nav>
 
 <section class="hero">
-<h1 class="amiri" style="color:var(--primary);font-size:3.5rem;margin-bottom:5px;">السلام عليكم</h1>
+<h1 class="amiri" style="color:var(--primary);font-size:3.5rem;margin-bottom:5px;">
+السلام عليكم
+</h1>
 <h1>Your Premium Deen<br>Companion</h1>
-<p style="color:var(--text-dim);margin-top:15px;font-size:.9rem;">Ad-free Quran, Prayer Times, Tasbih & more.</p>
+<p style="color:var(--text-dim);margin-top:15px;font-size:.9rem;">
+Ad-free Quran, Prayer Times, Tasbih & more.
+</p>
 
 <a href="https://github.com/noor7398shah-droid/Quran-App/releases/latest/download/AlMusalimeen_latest.apk"
 class="download-btn">
@@ -111,6 +176,7 @@ class="download-btn">
 </a>
 
 <div class="live-count">
+Version: <span id="appVersion">Loading...</span> • 
 Total Downloads: <span id="downloadCount">Loading...</span>
 </div>
 </section>
@@ -139,7 +205,9 @@ Total Downloads: <span id="downloadCount">Loading...</span>
 
 <!-- Ayah -->
 <div class="ayah-card">
-<p class="amiri" style="font-size:2.2rem;color:var(--primary);">بیشک مشکل کے ساتھ آسانی ہے۔</p>
+<p class="amiri" style="font-size:2.2rem;color:var(--primary);">
+بیشک مشکل کے ساتھ آسانی ہے۔
+</p>
 <p style="font-size:.9rem;opacity:.8;margin-top:15px;">
 "Indeed, with hardship [will be] ease."<br>
 <b>Surah Ash-Sharh 94:6</b>
@@ -150,33 +218,40 @@ Total Downloads: <span id="downloadCount">Loading...</span>
 <p>© 2026 Al Musalimeen • Built for the Ummah by Noor Ali</p>
 </footer>
 
-<!-- Hidden Admin UI only -->
-<div id="adminPanel">
-<h3>Admin Panel</h3>
-<p>Secure system coming soon</p>
-</div>
-
-<!-- GitHub Professional Counter -->
+<!-- GitHub API Script -->
 <script>
-async function loadDownloadCount(){
+async function loadReleaseData(){
 try{
-const response=await fetch("https://api.github.com/repos/noor7398shah-droid/Quran-App/releases/latest");
-const data=await response.json();
-let total=0;
+const response = await fetch("https://api.github.com/repos/noor7398shah-droid/Quran-App/releases/latest");
+const data = await response.json();
+
+let total = 0;
 if(data.assets){
 data.assets.forEach(asset=>{
-total+=asset.download_count;
+total += asset.download_count;
 });
 }
-document.getElementById("downloadCount").innerText=total;
-}catch(e){
-document.getElementById("downloadCount").innerText="—";
+
+document.getElementById("downloadCount").innerText = total || 0;
+
+if(data.tag_name){
+document.getElementById("appVersion").innerText = data.tag_name.replace(/^v/i,'');
+}else{
+document.getElementById("appVersion").innerText = "—";
+}
+
+}catch(error){
+document.getElementById("downloadCount").innerText = "—";
+document.getElementById("appVersion").innerText = "—";
 }
 }
-loadDownloadCount();
+
+loadReleaseData();
 </script>
 
-<script>lucide.createIcons();</script>
+<script>
+lucide.createIcons();
+</script>
 
 </body>
 </html>
