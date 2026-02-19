@@ -181,7 +181,6 @@ Total Downloads: <span id="downloadCount">Loading...</span>
 </div>
 </section>
 
-<!-- Slider -->
 <div class="slider-container">
 <div class="slider-track">
 <img src="https://noor7398shah-droid.github.io/Quran-App/1000088096.jpg">
@@ -195,7 +194,6 @@ Total Downloads: <span id="downloadCount">Loading...</span>
 </div>
 </div>
 
-<!-- Features -->
 <section class="features">
 <div class="feature-item"><i data-lucide="book-marked" size="28"></i><h3>Quran Majeed</h3></div>
 <div class="feature-item"><i data-lucide="bell-ring" size="28"></i><h3>Prayer Times</h3></div>
@@ -203,7 +201,6 @@ Total Downloads: <span id="downloadCount">Loading...</span>
 <div class="feature-item"><i data-lucide="list-check" size="28"></i><h3>Digital Tasbih</h3></div>
 </section>
 
-<!-- Ayah -->
 <div class="ayah-card">
 <p class="amiri" style="font-size:2.2rem;color:var(--primary);">
 بیشک مشکل کے ساتھ آسانی ہے۔
@@ -218,27 +215,36 @@ Total Downloads: <span id="downloadCount">Loading...</span>
 <p>© 2026 Al Musalimeen • Built for the Ummah by Noor Ali</p>
 </footer>
 
-<!-- GitHub API Script -->
+<!-- UPDATED GitHub API Script -->
 <script>
 async function loadReleaseData(){
 try{
-const response = await fetch("https://api.github.com/repos/noor7398shah-droid/Quran-App/releases/latest");
-const data = await response.json();
 
-let total = 0;
-if(data.assets){
-data.assets.forEach(asset=>{
-total += asset.download_count;
+const response = await fetch(
+"https://api.github.com/repos/noor7398shah-droid/Quran-App/releases"
+);
+
+const releases = await response.json();
+
+let totalDownloads = 0;
+let latestVersion = "—";
+
+releases.forEach((release, index) => {
+
+if(index === 0 && release.tag_name){
+latestVersion = release.tag_name.replace(/^v/i,'');
+}
+
+if(release.assets){
+release.assets.forEach(asset=>{
+totalDownloads += asset.download_count;
 });
 }
 
-document.getElementById("downloadCount").innerText = total || 0;
+});
 
-if(data.tag_name){
-document.getElementById("appVersion").innerText = data.tag_name.replace(/^v/i,'');
-}else{
-document.getElementById("appVersion").innerText = "—";
-}
+document.getElementById("downloadCount").innerText = totalDownloads;
+document.getElementById("appVersion").innerText = latestVersion;
 
 }catch(error){
 document.getElementById("downloadCount").innerText = "—";
