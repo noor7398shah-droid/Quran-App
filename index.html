@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Al Musalimeen | A Complete Deen Experience</title>
+<title>Al Musalimeen | Complete Deen Experience</title>
 
 <script src="https://unpkg.com/lucide@latest"></script>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif;}
 body{background:radial-gradient(circle at top,#0b1f16,#050b08 70%);color:var(--text);overflow-x:hidden;}
 section{padding:80px 8%;}
-h2{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:20px;}
+h2{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:20px;text-align:center;}
 p{color:var(--dim);line-height:1.7;}
 .amiri{font-family:'Amiri',serif;color:var(--gold);}
 
@@ -37,14 +37,13 @@ gap:12px;
 margin-top:30px;
 transition:.3s;
 }
-
 .btn:hover{transform:translateY(-4px);}
 
 /* hero */
 .hero{text-align:center;padding:100px 8% 80px;}
 .hero h1{font-size:clamp(2.5rem,6vw,3.5rem);}
 
-/* glass card */
+/* glass */
 .glass{
 background:var(--glass);
 backdrop-filter:blur(15px);
@@ -60,7 +59,6 @@ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:30px;
 margin-top:40px;
 }
-
 .feature{
 background:var(--glass);
 padding:30px;
@@ -86,6 +84,41 @@ scroll-snap-align:center;
 box-shadow:0 15px 40px rgba(0,0,0,.5);
 }
 
+/* testimonials slider */
+.testimonial-wrapper{
+max-width:700px;
+margin:50px auto 0;
+position:relative;
+overflow:hidden;
+}
+.testimonial-track{
+display:flex;
+transition:transform .6s ease;
+}
+.testimonial{
+min-width:100%;
+padding:40px;
+background:var(--glass);
+border-radius:25px;
+border:1px solid rgba(255,255,255,.05);
+text-align:center;
+}
+.stars{color:var(--gold);margin-bottom:15px;}
+.dots{
+display:flex;
+justify-content:center;
+gap:10px;
+margin-top:20px;
+}
+.dot{
+width:10px;
+height:10px;
+border-radius:50%;
+background:rgba(255,255,255,.3);
+cursor:pointer;
+}
+.dot.active{background:var(--gold);}
+
 /* footer */
 footer{
 text-align:center;
@@ -98,12 +131,11 @@ border-top:1px solid rgba(255,255,255,.05);
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
 <h1 class="amiri">السلام عليكم</h1>
 <h1>Your Complete Digital Deen Companion</h1>
 <p style="margin-top:20px;">
-In a world full of distractions, stay connected to your Deen — beautifully and peacefully.
+Stay connected to your Deen without distractions.
 </p>
 
 <a href="https://github.com/noor7398shah-droid/Quran-App/releases/latest/download/AlMusalimeen_latest.apk" class="btn">
@@ -111,63 +143,31 @@ In a world full of distractions, stay connected to your Deen — beautifully and
 </a>
 </section>
 
-<!-- PROBLEM -->
 <section>
 <div class="glass">
 <h2>Modern Life Is Distracting</h2>
-<p>
-Ads everywhere. Complicated Islamic apps. Inaccurate prayer times.
-Too many apps. Too much noise.
-</p>
-<p style="margin-top:15px;">
-The Ummah deserves something clean. Focused. Pure.
-</p>
+<p>Ads everywhere. Complicated Islamic apps. Too much noise.</p>
+<p style="margin-top:15px;">The Ummah deserves something clean and focused.</p>
 </div>
 </section>
 
-<!-- SOLUTION -->
 <section>
 <h2>The Solution: Al Musalimeen</h2>
-<p>
-One beautiful app. Everything you need. No ads. No distractions.
-Only Deen.
+<p style="text-align:center;">
+One beautiful app. No ads. No distractions. Only Deen.
 </p>
 </section>
 
-<!-- FEATURES -->
 <section>
-<h2>Everything You Need — In One Place</h2>
-
+<h2>Everything You Need</h2>
 <div class="grid">
-
-<div class="feature">
-<i data-lucide="book-marked" size="32"></i>
-<h3>Quran Majeed</h3>
-<p>Clean Arabic text. Smooth reading experience.</p>
-</div>
-
-<div class="feature">
-<i data-lucide="bell-ring" size="32"></i>
-<h3>Accurate Prayer Times</h3>
-<p>Stay punctual with precise Salah timings.</p>
-</div>
-
-<div class="feature">
-<i data-lucide="navigation-2" size="32"></i>
-<h3>Qibla Finder</h3>
-<p>Instant direction anywhere in the world.</p>
-</div>
-
-<div class="feature">
-<i data-lucide="list-check" size="32"></i>
-<h3>Digital Tasbih</h3>
-<p>Simple and distraction-free dhikr counter.</p>
-</div>
-
+<div class="feature"><i data-lucide="book-marked" size="32"></i><h3>Quran</h3></div>
+<div class="feature"><i data-lucide="bell-ring" size="32"></i><h3>Prayer Times</h3></div>
+<div class="feature"><i data-lucide="navigation-2" size="32"></i><h3>Qibla</h3></div>
+<div class="feature"><i data-lucide="list-check" size="32"></i><h3>Tasbih</h3></div>
 </div>
 </section>
 
-<!-- SCREENSHOTS -->
 <section>
 <h2>Beautiful Interface</h2>
 <div class="slider">
@@ -178,11 +178,40 @@ Only Deen.
 </div>
 </section>
 
-<!-- FINAL CTA -->
+<!-- TESTIMONIAL SLIDER -->
+<section>
+<h2>What Our Users Say</h2>
+
+<div class="testimonial-wrapper" id="testimonialWrapper">
+<div class="testimonial-track" id="testimonialTrack">
+
+<div class="testimonial">
+<div class="stars">★★★★★</div>
+<p>"Cleanest Islamic app I have used. Pure experience."</p>
+<h4 style="margin-top:15px;color:var(--gold);">Ahmed R. – Mumbai</h4>
+</div>
+
+<div class="testimonial">
+<div class="stars">★★★★★</div>
+<p>"Accurate prayer times and beautiful Quran layout."</p>
+<h4 style="margin-top:15px;color:var(--gold);">Saba K. – Delhi</h4>
+</div>
+
+<div class="testimonial">
+<div class="stars">★★★★★</div>
+<p>"Replaced 3 apps with this one. Everything in one place."</p>
+<h4 style="margin-top:15px;color:var(--gold);">Imran S. – Hyderabad</h4>
+</div>
+
+</div>
+
+<div class="dots" id="dots"></div>
+
+</div>
+</section>
+
 <section style="text-align:center;">
 <h2>Strengthen Your Connection With Allah</h2>
-<p>Join thousands who already use Al Musalimeen daily.</p>
-
 <a href="https://github.com/noor7398shah-droid/Quran-App/releases/latest/download/AlMusalimeen_latest.apk" class="btn">
 <i data-lucide="download"></i> Download Now
 </a>
@@ -194,6 +223,45 @@ Only Deen.
 
 <script>
 lucide.createIcons();
+
+const track = document.getElementById("testimonialTrack");
+const dotsContainer = document.getElementById("dots");
+const slides = document.querySelectorAll(".testimonial");
+
+let index = 0;
+let interval;
+
+slides.forEach((_,i)=>{
+const dot=document.createElement("div");
+dot.classList.add("dot");
+if(i===0)dot.classList.add("active");
+dot.addEventListener("click",()=>goToSlide(i));
+dotsContainer.appendChild(dot);
+});
+
+const dots=document.querySelectorAll(".dot");
+
+function goToSlide(i){
+index=i;
+track.style.transform=`translateX(-${index*100}%)`;
+dots.forEach(d=>d.classList.remove("active"));
+dots[index].classList.add("active");
+}
+
+function autoSlide(){
+index=(index+1)%slides.length;
+goToSlide(index);
+}
+
+interval=setInterval(autoSlide,4000);
+
+document.getElementById("testimonialWrapper")
+.addEventListener("mouseenter",()=>clearInterval(interval));
+
+document.getElementById("testimonialWrapper")
+.addEventListener("mouseleave",()=>{
+interval=setInterval(autoSlide,4000);
+});
 </script>
 
 </body>
